@@ -57,7 +57,7 @@
 </head>
 <body>
     <div id="root"></div>
-    <!-- 修正入口：移除所有干扰脚本，确保 Vite 能够分析打包 -->
-    <script type="module" src="/index.tsx"></script>
+    <!-- 修正：使用相对路径以确保 Vite 构建器能追踪依赖并打包产物 -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>
