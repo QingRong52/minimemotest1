@@ -1,26 +1,28 @@
 import { GoogleGenAI } from "@google/genai";
 
 export async function getHumbleEncouragement(): Promise<string> {
-  // 仅在函数调用时获取 API KEY
+  // 严格从环境变量获取 API KEY
   const apiKey = process.env.API_KEY;
   
   if (!apiKey) {
-    console.warn("未检测到 API_KEY，小的这就去给大人准备茶水，咱们不跟 API 计较。");
+    console.warn("小的斗胆提醒：未检测到 API_KEY 环境变量，请确保在 Vercel 项目设置中已配置。");
     return "大人，这17块钱也是钱，咱们不跟钱过不去！";
   }
 
   try {
-    // 每次请求时动态实例化，确保环境安全
+    // 规范：使用命名参数初始化
     const ai = new GoogleGenAI({ apiKey });
+    
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
-      contents: "给一个正在公司辛苦工作（摸鱼）的职场人写一句极度卑微、讨好、耐心的鼓励话语。要求：用‘小的’自称，称呼对方为‘大人’。语气要像极度忠诚的奴才，字数控制在30字以内。",
+      contents: "你是一个极度卑微、讨好、忠诚的职场小奴才。请对一个正在摸鱼（带薪修行）的大人说一句鼓励的话。要求：自称‘小的’，称呼对方为‘大人’。语气要卑微到土里，但又要透着关心，字数30字以内。",
     });
     
-    // 直接返回提取的文本
-    return response.text?.trim() || "大人，您辛苦了，小的为您祈福。";
+    // 规范：直接访问 .text 属性而非方法
+    const text = response.text;
+    return text?.trim() || "大人，您的一举一动都牵动着小的的心，请务必注意休息。";
   } catch (error) {
-    console.error("Gemini API Error:", error);
-    return "大人，小的即便肝脑涂地，也愿为您排忧解难。";
+    console.error("Gemini 逻辑受阻，小的罪该万死:", error);
+    return "大人，即便前路艰辛，小的也愿做您的垫脚石。";
   }
 }

@@ -57,7 +57,7 @@
 </head>
 <body>
     <div id="root"></div>
-    <!-- 修正：使用绝对路径，确保 Vite 能够追踪依赖并打包 -->
+    <!-- 统一入口脚本，Vite 会从此开始递归打包所有组件 -->
     <script type="module" src="/index.tsx"></script>
 </body>
 </html>
