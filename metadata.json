@@ -1,0 +1,7 @@
+{
+  "name": "摸鱼大帝 (The Fish-Slacking Emperor)",
+  "description": "一款专为职场卑微社畜设计的‘复仇引擎’，在带薪摸鱼中完成自我进化，极简代码编辑器风格，自带老板键与极度卑微的语音关怀。",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
